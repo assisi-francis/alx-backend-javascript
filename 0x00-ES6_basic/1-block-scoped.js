@@ -1,3 +1,6 @@
+/* eslint-disabled-line */
+/* //eslint-disabled-line no-va */
+
 export default function taskBlock(trueOrFalse) {
   const task = false;
   const task2 = true;
