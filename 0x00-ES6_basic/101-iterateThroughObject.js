@@ -1,9 +1,14 @@
-/* iterate through objct */
+/* eslint-disable radix */
 export default function iterateThroughObject(reportWithIterator) {
-  let result = '';
-  for (const item of reportWithIterator) {
-    result += item + ' | ';
+  let output = '';
+
+  for (const [index, item] of Object.entries(reportWithIterator)) {
+    output += `${item}`;
+
+    if (parseInt(index) !== reportWithIterator.length - 1) {
+      output += ' | ';
+    }
   }
-  result = result.slice(0, -3); // Remove the trailing ' | ' characters
-  return result;
+
+  return output;
 }
