@@ -1,3 +1,4 @@
+/* iterator */
 export default function createIteratorObject(report) {
   const departments = Object.entries(report.allEmployees).filter(([_, employees]) => employees.length > 0);
 
