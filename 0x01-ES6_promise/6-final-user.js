@@ -8,8 +8,15 @@ export default function handleProfileSignup(firstName, lastName, fileName) {
     uploadPhoto(fileName),
   ];
 
-  return Promise.allSettled(promises).then((results) => results.map((result) => ({
-    status: result.status,
-    value: result.status === 'fulfilled' ? result.value : result.reason,
-  })));
+  return Promise.allSettled(promises).then((values) => {
+    const result = [];
+    values.forEach((element) => {
+      if (element.status === 'fulfilled') {
+        result.push({ status: element.status, value: element.value });
+      } else {
+        result.push({ status: element.status, value: `${element.reason}` });
+      }
+    });
+    return result;
+  });
 }
