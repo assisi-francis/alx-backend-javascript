@@ -1,5 +1,5 @@
 /* promise */
-import { uploadPhoto, createUser } from "./utils.js";
+import { uploadPhoto, createUser } from './utils';
 
 function handleProfileSignup() {
   Promise.all([uploadPhoto(), createUser()])
@@ -8,7 +8,7 @@ function handleProfileSignup() {
       console.log(`${photoResponse.body} ${userResponse.firstName} ${userResponse.lastName}`);
     })
     .catch((error) => {
-      console.log("Signup system offline");
+      console.log('Signup system offline');
     });
 }
 
