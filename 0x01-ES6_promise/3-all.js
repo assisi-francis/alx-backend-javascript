@@ -2,20 +2,13 @@
 import { uploadPhoto, createUser } from './utils';
 
 function handleProfileSignup() {
-  Promise.allSettled([uploadPhoto(), createUser()])
-    .then((results) => {
-      const fulfilledResponses = results.filter((result) => result.status === 'fulfilled');
-      const rejectedResponses = results.filter((result) => result.status === 'rejected');
+  const photo = uploadPhoto();
+  const user = createUser();
 
-      if (fulfilledResponses.length > 0) {
-        const userResponse = fulfilledResponses[1].value;
-        console.log(`Body ${userResponse.firstName} ${userResponse.lastName}`);
-      }
-
-      if (rejectedResponses.length > 0) {
-        console.log('Signup system offline');
-      }
-    });
+  return Promise.all([photo, user]).then((res) => {
+    console.log(`${res[0].body} ${res[1].firstName} ${res[1].lastName}`);
+  })
+    .catch(() => { console.log('Signup system offline'); });
 }
 
 export default handleProfileSignup;
